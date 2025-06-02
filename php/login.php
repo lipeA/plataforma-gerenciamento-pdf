@@ -1,28 +1,27 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
 session_start();
-
 
 $host = 'localhost';
 $user = 'root';
 $pass = '';
-$db = 'test'; 
-$conn = new mysqli($host, $user, $pass, $db);
+$db = 'test';
 
+$conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
     die("Erro na conexão: " . $conn->connect_error);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $login = $_POST['login'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $login = trim($_POST['login'] ?? '');
+    $senha = trim($_POST['password'] ?? '');
 
-    // Converte a senha para inteiro
-    $password_int = (int)$password;
+    if (empty($login) || empty($senha)) {
+        echo "<script>alert('Preencha todos os campos.'); window.location.href = '../index.html';</script>";
+        exit;
+    }
 
-    // Consulta o banco de dados
-    $stmt = $conn->prepare("SELECT id FROM users WHERE userName = ? AND password = ?");
-    $stmt->bind_param("si", $login, $password_int);
+    $stmt = $conn->prepare("SELECT id FROM usuarios WHERE nome = ? AND senha = ?");
+    $stmt->bind_param("ss", $login, $senha);
     $stmt->execute();
     $stmt->store_result();
 
@@ -31,10 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ../pages/painel.php');
         exit;
     } else {
-        echo "<script>
-            alert('Usuário ou senha incorretos!');
-            window.location.href = '../index.html';
-        </script>";
+        echo "<script>alert('Usuário ou senha incorretos!'); window.location.href = '../index.html';</script>";
         exit;
     }
 } else {

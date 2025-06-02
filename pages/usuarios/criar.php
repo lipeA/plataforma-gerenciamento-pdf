@@ -44,6 +44,7 @@ if (!isset($_SESSION['usuario'])) {
         main {
             flex: 1;
             max-width: 600px;
+            width: 100%;
             margin: 32px auto;
             background: #fff;
             padding: 32px 24px;

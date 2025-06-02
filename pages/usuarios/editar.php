@@ -50,7 +50,8 @@ $usuario = ['id' => $id, 'nome' => 'Alice Silva', 'email' => 'alice@example.com'
         }
         main {
             flex: 1;
-            max-width: 480px;
+            max-width: 600px;
+            width: 100%;
             margin: 32px auto;
             background: #fff;
             padding: 32px 24px;
@@ -130,7 +131,7 @@ $usuario = ['id' => $id, 'nome' => 'Alice Silva', 'email' => 'alice@example.com'
         <button type="submit">Salvar Alterações</button>
     </form>
 
-    <a href="index.php" class="back-link">← Voltar à lista de usuários</a>
+    <a href="../painel.php" class="back-link">← Voltar à lista de usuários</a>
 </main>
 
 </body>
