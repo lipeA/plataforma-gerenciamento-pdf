@@ -8,6 +8,7 @@ if (!isset($_SESSION['usuario'])) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,10 +32,12 @@ if (!isset($_SESSION['usuario'])) {
             text-align: center;
             box-shadow: 0 2px 8px rgb(30 64 175 / 0.3);
         }
+
         header h1 {
             font-weight: 600;
             font-size: 1.8rem;
         }
+
         header p {
             font-weight: 400;
             opacity: 0.85;
@@ -81,6 +84,7 @@ if (!isset($_SESSION['usuario'])) {
             font-size: 1rem;
             transition: border-color 0.3s ease;
         }
+
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="password"]:focus {
@@ -100,6 +104,7 @@ if (!isset($_SESSION['usuario'])) {
             box-shadow: 0 6px 18px rgb(59 130 246 / 0.4);
             transition: background-color 0.3s ease;
         }
+
         button:hover {
             background-color: #2563eb;
         }
@@ -113,35 +118,38 @@ if (!isset($_SESSION['usuario'])) {
             font-size: 1rem;
             transition: color 0.3s ease;
         }
+
         .back-link:hover {
             color: #3b82f6;
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    <h1>Gerenciador de PDF</h1>
-    <p>Bem-vindo, <?php echo htmlspecialchars($_SESSION['usuario']); ?>!</p>
-</header>
+    <header>
+        <h1>Gerenciador de PDF</h1>
+        <p>Bem-vindo, <?php echo htmlspecialchars($_SESSION['usuario']); ?>!</p>
+    </header>
 
-<main>
-    <h2>Criar Novo Usuário</h2>
-    <form action="../php/processar_criacao.php" method="POST">
-        <label for="nome">Nome Completo</label>
-        <input type="text" id="nome" name="nome" required placeholder="Digite o nome completo" />
+    <main>
+        <h2>Criar Novo Usuário</h2>
+        <form action="../../php/usuarios/proc_criar_users.php" method="POST">
+            <label for="nome">Nome Completo</label>
+            <input type="text" id="nome" name="nome" required placeholder="Digite o nome completo" />
 
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" required placeholder="email@exemplo.com" />
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required placeholder="email@exemplo.com" />
 
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" required placeholder="Digite a senha" />
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required placeholder="Digite a senha" />
 
-        <button type="submit">Criar Usuário</button>
-    </form>
+            <button type="submit">Criar Usuário</button>
+        </form>
 
-    <a href="../painel.php" class="back-link">← Voltar ao Painel</a>
-</main>
+        <a href="../../php/painel.php" class="back-link">← Voltar ao Painel</a>
+    </main>
 
 </body>
+
 </html>
